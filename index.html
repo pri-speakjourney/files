@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reservar Vaga</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 8px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #2d8a6e;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 14px 36px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(45,138,110,0.3);
+      letter-spacing: 0.01em;
+    }
+
+    .btn:hover {
+      background: #1e6b54;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(45,138,110,0.4);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <a class="btn" href="https://webhook-n8n-rocketship.up.railway.app/webhook/class-booking" target="_blank">
+    Reservar minha vaga
+  </a>
+</body>
+</html>
