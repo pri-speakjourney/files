@@ -459,12 +459,23 @@ document.getElementById('nomeBtn').addEventListener('click', () => {
   goToStep('step-nome', 'step-email', 2);
 });
 
+const DATA_WEBHOOK_URL = 'https://webhook-n8n-rocketship.up.railway.app/webhook/placement-data';
+
 document.getElementById('emailBtn').addEventListener('click', () => {
   const email = document.getElementById('inputEmail').value.trim();
   if (!isValidEmail(email)) {
     document.getElementById('inputEmail').focus();
     return;
   }
+
+  const nome = document.getElementById('inputName').value.trim();
+
+  fetch(DATA_WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nome, email })
+  }).catch(err => console.error('Erro ao enviar dados:', err));
+
   goToStep('step-email', 'step-question', 3);
 });
 
@@ -482,7 +493,7 @@ document.querySelectorAll('.play-btn').forEach(btn => {
 });
 
 /* gravação */
-const WEBHOOK_URL = 'https://webhook-n8n-rocketship.up.railway.app/webhook/placement-data';
+const WEBHOOK_URL = 'https://webhook-n8n-rocketship.up.railway.app/webhook/5d095d30-ea36-4b60-87f1-340ab1bfa51d';
 
 let mediaRecorder;
 let chunks = [];
