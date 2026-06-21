@@ -233,6 +233,33 @@
     50% { box-shadow: 0 8px 0 rgba(26,58,82,.18), 0 0 0 14px rgba(224,85,85,0); }
   }
 
+  .recording-indicator {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #e05555;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .recording-indicator.active { display: flex; }
+
+  .rec-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e05555;
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .2; }
+  }
+
   .limit-notice {
     text-align: center;
     font-size: 13px;
@@ -417,6 +444,11 @@
 
     <div class="spacer"></div>
 
+    <div class="recording-indicator" id="recordingIndicator">
+      <span class="rec-dot"></span>
+      Gravando... <span id="recordingTime">2:00</span>
+    </div>
+
     <div class="mic-wrap">
       <button class="mic-btn" id="micBtn" aria-label="Gravar resposta">
         <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -427,7 +459,7 @@
       </button>
     </div>
 
-    <p class="limit-notice">O áudio deve ter até 2 minutos.</p>
+    <p class="limit-notice" id="limitNotice">O áudio deve ter até 2 minutos.</p>
 
     <div class="status" id="status"></div>
 
@@ -508,15 +540,6 @@ document.getElementById('emailBtn').addEventListener('click', () => {
     document.getElementById('inputEmail').focus();
     return;
   }
-
-  const nome = document.getElementById('inputName').value.trim();
-
-  fetch(DATA_WEBHOOK_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nome, email })
-  }).catch(err => console.error('Erro ao enviar dados:', err));
-
   goToStep('step-email', 'step-question', 3);
 });
 
@@ -534,58 +557,105 @@ document.querySelectorAll('.play-btn').forEach(btn => {
 });
 
 /* gravação */
-const WEBHOOK_URL = 'https://webhook-n8n-rocketship.up.railway.app/webhook/5d095d30-ea36-4b60-87f1-340ab1bfa51d';
+const DATA_WEBHOOK_URL = 'https://webhook-n8n-rocketship.up.railway.app/webhook/placement-data';
+const MAX_SECONDS = 120;
+
+const MIC_ICON = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><line x1="12" y1="19" x2="12" y2="22"/></svg>';
+const STOP_ICON = '<svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="3"/></svg>';
 
 let mediaRecorder;
 let chunks = [];
 let isRecording = false;
+let secondsLeft = MAX_SECONDS;
+let timerInterval = null;
 
 const micBtn = document.getElementById('micBtn');
 const status = document.getElementById('status');
+const recordingIndicator = document.getElementById('recordingIndicator');
+const recordingTimeEl = document.getElementById('recordingTime');
+const limitNotice = document.getElementById('limitNotice');
 
-micBtn.addEventListener('click', async () => {
-  if (!isRecording) {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      chunks = [];
-      mediaRecorder = new MediaRecorder(stream);
+function formatTime(total) {
+  const m = Math.floor(total / 60);
+  const s = total % 60;
+  return m + ':' + String(s).padStart(2, '0');
+}
 
-      mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
-
-      mediaRecorder.onstop = async () => {
-        stream.getTracks().forEach(track => track.stop());
-
-        const blob = new Blob(chunks, { type: mediaRecorder.mimeType || 'audio/webm' });
-        status.textContent = 'Enviando...';
-
-        try {
-          const formData = new FormData();
-          formData.append('audio', blob, 'resposta.webm');
-          formData.append('nome', document.getElementById('inputName').value.trim());
-          formData.append('email', document.getElementById('inputEmail').value.trim());
-
-          const response = await fetch(WEBHOOK_URL, { method: 'POST', body: formData });
-          if (response.ok) {
-            goToStep('step-question', 'step-final', null);
-          } else {
-            status.textContent = 'Erro ao enviar. Status: ' + response.status;
-          }
-        } catch (err) {
-          status.textContent = 'Erro de rede: ' + err.message;
-        }
-      };
-
-      mediaRecorder.start();
-      isRecording = true;
-      micBtn.classList.add('recording');
-      status.textContent = 'Gravando...';
-    } catch (err) {
-      status.textContent = 'Não consegui acessar o microfone: ' + err.message;
+function startTimer() {
+  secondsLeft = MAX_SECONDS;
+  recordingTimeEl.textContent = formatTime(secondsLeft);
+  timerInterval = setInterval(() => {
+    secondsLeft--;
+    recordingTimeEl.textContent = formatTime(secondsLeft);
+    if (secondsLeft <= 0) {
+      stopRecording();
     }
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+}
+
+async function startRecording() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    chunks = [];
+    mediaRecorder = new MediaRecorder(stream);
+
+    mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
+
+    mediaRecorder.onstop = async () => {
+      stream.getTracks().forEach(track => track.stop());
+
+      const blob = new Blob(chunks, { type: mediaRecorder.mimeType || 'audio/webm' });
+      status.textContent = 'Enviando...';
+
+      try {
+        const formData = new FormData();
+        formData.append('nome', document.getElementById('inputName').value.trim());
+        formData.append('email', document.getElementById('inputEmail').value.trim());
+        formData.append('audio', blob, 'resposta.webm');
+
+        const response = await fetch(DATA_WEBHOOK_URL, { method: 'POST', body: formData });
+        if (response.ok) {
+          goToStep('step-question', 'step-final', null);
+        } else {
+          status.textContent = 'Erro ao enviar. Status: ' + response.status;
+        }
+      } catch (err) {
+        status.textContent = 'Erro de rede: ' + err.message;
+      }
+    };
+
+    mediaRecorder.start();
+    isRecording = true;
+    micBtn.classList.add('recording');
+    micBtn.innerHTML = STOP_ICON;
+    recordingIndicator.classList.add('active');
+    limitNotice.style.display = 'none';
+    startTimer();
+  } catch (err) {
+    status.textContent = 'Não consegui acessar o microfone: ' + err.message;
+  }
+}
+
+function stopRecording() {
+  if (!isRecording) return;
+  mediaRecorder.stop();
+  isRecording = false;
+  micBtn.classList.remove('recording');
+  micBtn.innerHTML = MIC_ICON;
+  recordingIndicator.classList.remove('active');
+  limitNotice.style.display = '';
+  stopTimer();
+}
+
+micBtn.addEventListener('click', () => {
+  if (!isRecording) {
+    startRecording();
   } else {
-    mediaRecorder.stop();
-    isRecording = false;
-    micBtn.classList.remove('recording');
+    stopRecording();
   }
 });
 </script>
