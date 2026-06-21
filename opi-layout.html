@@ -532,8 +532,6 @@ document.getElementById('nomeBtn').addEventListener('click', () => {
   goToStep('step-nome', 'step-email', 2);
 });
 
-const DATA_WEBHOOK_URL = 'https://webhook-n8n-rocketship.up.railway.app/webhook/placement-data';
-
 document.getElementById('emailBtn').addEventListener('click', () => {
   const email = document.getElementById('inputEmail').value.trim();
   if (!isValidEmail(email)) {
