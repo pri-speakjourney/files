@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>SpeakJourney — Placement Test</title>
+<title>SpeakFast — Placement Test</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -404,6 +404,69 @@
   }
 
   #step-intro .home-indicator { background: rgba(26,58,82,.25); }
+
+
+  .final-email-card {
+    width: 100%;
+    max-width: 340px;
+    margin: 22px auto 0;
+    background: #fff;
+    border-radius: 22px;
+    padding: 20px 18px 18px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(26,58,82,.08);
+  }
+
+  .final-email-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(42,157,143,.12);
+    color: var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+  }
+
+  .final-email-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 8px;
+    letter-spacing: -.01em;
+  }
+
+  .final-email-text {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: rgba(26,58,82,.65);
+    margin: 0;
+  }
+
+  .final-email-address {
+    display: inline-block;
+    margin-top: 6px;
+    color: var(--navy);
+    font-weight: 700;
+    word-break: break-word;
+  }
+
+  .final-email-note {
+    margin-top: 12px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: rgba(245,197,24,.14);
+    color: rgba(26,58,82,.72);
+    font-size: 12.5px;
+    line-height: 1.45;
+    font-weight: 600;
+  }
+
+  #step-final .spacer {
+    flex: .65;
+  }
+
 </style>
 </head>
 <body>
@@ -626,6 +689,21 @@
       </div>
     </div>
 
+    <div class="final-email-card">
+      <div class="final-email-icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="2"/>
+          <path d="m3 7 9 6 9-6"/>
+        </svg>
+      </div>
+      <p class="final-email-title">Seu resultado está a caminho</p>
+      <p class="final-email-text">
+        Vamos enviar sua avaliação para o e-mail informado em alguns minutos.<br>
+        <span class="final-email-address" id="finalEmailAddress">Confira sua caixa de entrada.</span>
+      </p>
+      <p class="final-email-note">Não encontrou? Dá uma olhadinha no spam, promoções ou lixo eletrônico.</p>
+    </div>
+
     <div class="spacer"></div>
 
     <div class="brand-footer">
@@ -751,6 +829,10 @@ async function startRecording() {
 
         const response = await fetch(DATA_WEBHOOK_URL, { method: 'POST', body: formData });
         if (response.ok) {
+          const finalEmailAddress = document.getElementById('finalEmailAddress');
+          if (finalEmailAddress) {
+            finalEmailAddress.textContent = document.getElementById('inputEmail').value.trim();
+          }
           goToStep('step-question', 'step-final', null);
         } else {
           status.textContent = 'Erro ao enviar. Status: ' + response.status;
