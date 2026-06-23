@@ -28,9 +28,7 @@
     transition: background .2s ease;
   }
 
-  body.intro-active {
-    background: var(--bg);
-  }
+  body.intro-active { background: var(--bg); }
 
   .screen {
     width: 100%;
@@ -44,15 +42,8 @@
   .step { display: none; flex-direction: column; flex: 1; }
   .step.active { display: flex; }
 
-  .intro-logo {
-    text-align: center;
-    margin-bottom: 14px;
-  }
-
-  .intro-logo img {
-    height: 28px;
-    width: auto;
-  }
+  .intro-logo { text-align: center; margin-bottom: 14px; }
+  .intro-logo img { height: 28px; width: auto; }
 
   .topbar { margin-bottom: 28px; }
 
@@ -77,12 +68,8 @@
     margin-bottom: 22px;
   }
 
-  .title-intro {
-    text-align: center;
-    font-size: 30px;
-  }
+  .title-intro { text-align: center; font-size: 30px; }
 
-  /* personagem + balão, lado a lado */
   .char-bubble {
     position: relative;
     display: flex;
@@ -148,11 +135,7 @@
   }
 
   .play-btn:active { transform: scale(.93); }
-
-  .play-btn.playing {
-    background: var(--teal);
-    color: #fff;
-  }
+  .play-btn.playing { background: var(--teal); color: #fff; }
 
   .bubble-text {
     font-size: 14px;
@@ -160,6 +143,40 @@
     color: var(--navy);
     min-width: 0;
   }
+
+  /* tradução */
+  .bubble-translation {
+    display: none;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--track);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: rgba(26,58,82,.6);
+    font-style: italic;
+  }
+
+  .bubble-translation.visible { display: block; }
+
+  .translate-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 8px;
+    background: none;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--teal);
+    cursor: pointer;
+    padding: 0;
+    letter-spacing: .02em;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+
+  .translate-btn:hover { opacity: 1; }
 
   .spacer { flex: 1.4; }
   .spacer-bottom { flex: 1; }
@@ -205,11 +222,7 @@
   .continue-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 rgba(26,58,82,.18); }
   .continue-btn:disabled { opacity: .4; cursor: not-allowed; }
 
-  .mic-wrap {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 18px;
-  }
+  .mic-wrap { display: flex; justify-content: center; margin-bottom: 18px; }
 
   .mic-btn {
     width: 92px;
@@ -226,10 +239,7 @@
     transition: transform .15s, background .2s;
   }
 
-  .mic-btn:active {
-    transform: translateY(4px);
-    box-shadow: 0 4px 0 rgba(26,58,82,.18);
-  }
+  .mic-btn:active { transform: translateY(4px); box-shadow: 0 4px 0 rgba(26,58,82,.18); }
 
   .mic-btn.recording {
     background: #e05555;
@@ -268,11 +278,7 @@
     50% { opacity: .2; }
   }
 
-  .limit-notice {
-    text-align: center;
-    font-size: 13px;
-    color: var(--muted);
-  }
+  .limit-notice { text-align: center; font-size: 13px; color: var(--muted); }
 
   .status {
     text-align: center;
@@ -282,16 +288,8 @@
     min-height: 18px;
   }
 
-  .brand-footer {
-    text-align: center;
-    margin-top: 18px;
-  }
-
-  .brand-footer img {
-    height: 22px;
-    width: auto;
-    opacity: .6;
-  }
+  .brand-footer { text-align: center; margin-top: 18px; }
+  .brand-footer img { height: 22px; width: auto; opacity: .6; }
 
   .home-indicator {
     width: 120px;
@@ -301,7 +299,7 @@
     margin: 14px auto 0;
   }
 
-  /* ===== STEP 0 (intro) — visual escuro, exclusivo desta tela ===== */
+  /* intro */
   #step-intro {
     background: var(--bg);
     margin: -18px -20px -24px;
@@ -330,8 +328,7 @@
 
   #step-intro .bubble {
     position: relative;
-    top: auto;
-    right: auto;
+    top: auto; right: auto;
     width: 100%;
     max-width: 205px;
     justify-self: end;
@@ -341,16 +338,10 @@
     box-shadow: 0 8px 20px rgba(26,58,82,.1);
   }
 
-  #step-intro .bubble-tail {
-    background: #fff;
-    border: none;
-  }
-
+  #step-intro .bubble-tail { background: #fff; border: none; }
   #step-intro .bubble-text { color: var(--navy); }
-
   #step-intro .play-btn { background: rgba(42,157,143,.12); }
   #step-intro .play-btn.playing { background: var(--teal); color: #fff; }
-
   #step-intro .spacer { flex: 0.25; }
 
   #step-intro .title-intro {
@@ -396,16 +387,10 @@
     box-shadow: 0 4px 12px rgba(26,58,82,.06);
   }
 
-  #step-intro .intro-pill svg {
-    width: 14px;
-    height: 14px;
-    color: var(--teal);
-    flex-shrink: 0;
-  }
-
+  #step-intro .intro-pill svg { width: 14px; height: 14px; color: var(--teal); flex-shrink: 0; }
   #step-intro .home-indicator { background: rgba(26,58,82,.25); }
 
-
+  /* final */
   .final-email-card {
     width: 100%;
     max-width: 340px;
@@ -429,28 +414,9 @@
     margin: 0 auto 12px;
   }
 
-  .final-email-title {
-    font-size: 17px;
-    font-weight: 800;
-    color: var(--navy);
-    margin-bottom: 8px;
-    letter-spacing: -.01em;
-  }
-
-  .final-email-text {
-    font-size: 13.5px;
-    line-height: 1.55;
-    color: rgba(26,58,82,.65);
-    margin: 0;
-  }
-
-  .final-email-address {
-    display: inline-block;
-    margin-top: 6px;
-    color: var(--navy);
-    font-weight: 700;
-    word-break: break-word;
-  }
+  .final-email-title { font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 8px; letter-spacing: -.01em; }
+  .final-email-text { font-size: 13.5px; line-height: 1.55; color: rgba(26,58,82,.65); margin: 0; }
+  .final-email-address { display: inline-block; margin-top: 6px; color: var(--navy); font-weight: 700; word-break: break-word; }
 
   .final-email-note {
     margin-top: 12px;
@@ -463,17 +429,14 @@
     font-weight: 600;
   }
 
-  #step-final .spacer {
-    flex: .65;
-  }
-
+  #step-final .spacer { flex: .65; }
 </style>
 </head>
 <body>
 
 <div class="screen">
 
-  <!-- ===== STEP 0: intro ===== -->
+  <!-- STEP 0: intro -->
   <div class="step active" id="step-intro">
     <div class="topbar">
       <div class="intro-logo">
@@ -486,15 +449,16 @@
       <img class="character-img" src="https://raw.githubusercontent.com/pri-speakjourney/images/main/spencer-cartoon-4.png" alt="Spencer">
       <div class="bubble">
         <div class="bubble-top">
-          <button class="play-btn" data-text="Hey there! Ready to get started?" data-lang="en-US" aria-label="Ouvir a pergunta">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M4 9v6h4l5 5V4L8 9H4z"/>
-              <path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-              <path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-            </svg>
+          <button class="play-btn" data-text="Hey there! Ready to get started?" data-lang="en-US" aria-label="Ouvir">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
           </button>
           <p class="bubble-text">Hey there! Ready to get started?</p>
         </div>
+        <div class="bubble-translation" data-pt="Ei! Pronto para começar?"></div>
+        <button class="translate-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
+          Traduzir
+        </button>
         <span class="bubble-tail"></span>
       </div>
     </div>
@@ -506,28 +470,20 @@
 
     <div class="intro-pills">
       <div class="intro-pill">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="9" y="2" width="6" height="12" rx="3"/>
-          <path d="M5 10a7 7 0 0 0 14 0"/>
-          <line x1="12" y1="19" x2="12" y2="22"/>
-        </svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
         Grave sua resposta em inglês
       </div>
       <div class="intro-pill">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="5" width="18" height="14" rx="2"/>
-          <path d="m3 7 9 6 9-6"/>
-        </svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
         Resultado enviado por e-mail
       </div>
     </div>
 
     <button class="continue-btn" id="startBtn">Começar</button>
-
     <div class="home-indicator"></div>
   </div>
 
-  <!-- ===== STEP 1: nome ===== -->
+  <!-- STEP 1: nome -->
   <div class="step" id="step-nome">
     <div class="topbar">
       <div class="progress-track"><div class="progress-fill" id="progress1" style="width: 0%"></div></div>
@@ -539,15 +495,16 @@
       <img class="character-img" src="https://raw.githubusercontent.com/pri-speakjourney/images/main/spencer-cartoon-2.png" alt="Spencer">
       <div class="bubble">
         <div class="bubble-top">
-          <button class="play-btn" data-text="Before we start, what's your full name?" data-lang="en-US" aria-label="Ouvir a pergunta">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M4 9v6h4l5 5V4L8 9H4z"/>
-              <path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-              <path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-            </svg>
+          <button class="play-btn" data-text="Before we start, what's your full name?" data-lang="en-US" aria-label="Ouvir">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
           </button>
           <p class="bubble-text">Before we start, what's your full name?</p>
         </div>
+        <div class="bubble-translation" data-pt="Antes de começar, qual é o seu nome completo?"></div>
+        <button class="translate-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
+          Traduzir
+        </button>
         <span class="bubble-tail"></span>
       </div>
     </div>
@@ -559,17 +516,12 @@
     </div>
 
     <button class="continue-btn" id="nomeBtn">Continuar</button>
-
     <div class="spacer-bottom"></div>
-
-    <div class="brand-footer">
-      <img src="https://raw.githubusercontent.com/pri-speakjourney/images/main/logo-speakjourney.png" alt="SpeakJourney">
-    </div>
-
+    <div class="brand-footer"><img src="https://raw.githubusercontent.com/pri-speakjourney/images/main/logo-speakjourney.png" alt="SpeakJourney"></div>
     <div class="home-indicator"></div>
   </div>
 
-  <!-- ===== STEP 2: email ===== -->
+  <!-- STEP 2: email -->
   <div class="step" id="step-email">
     <div class="topbar">
       <div class="progress-track"><div class="progress-fill" id="progress2" style="width: 0%"></div></div>
@@ -581,15 +533,16 @@
       <img class="character-img" src="https://raw.githubusercontent.com/pri-speakjourney/images/main/spencer-cartoon-3.png" alt="Spencer">
       <div class="bubble">
         <div class="bubble-top">
-          <button class="play-btn" data-text="What's your best email, so we can send you the results?" data-lang="en-US" aria-label="Ouvir a pergunta">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M4 9v6h4l5 5V4L8 9H4z"/>
-              <path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-              <path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-            </svg>
+          <button class="play-btn" data-text="What's your best email, so we can send you the results?" data-lang="en-US" aria-label="Ouvir">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
           </button>
           <p class="bubble-text">What's your best email, so we can send you the results?</p>
         </div>
+        <div class="bubble-translation" data-pt="Qual é o seu melhor e-mail, para que possamos enviar os resultados?"></div>
+        <button class="translate-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
+          Traduzir
+        </button>
         <span class="bubble-tail"></span>
       </div>
     </div>
@@ -601,17 +554,12 @@
     </div>
 
     <button class="continue-btn" id="emailBtn">Continuar</button>
-
     <div class="spacer-bottom"></div>
-
-    <div class="brand-footer">
-      <img src="https://raw.githubusercontent.com/pri-speakjourney/images/main/logo-speakjourney.png" alt="SpeakJourney">
-    </div>
-
+    <div class="brand-footer"><img src="https://raw.githubusercontent.com/pri-speakjourney/images/main/logo-speakjourney.png" alt="SpeakJourney"></div>
     <div class="home-indicator"></div>
   </div>
 
-  <!-- ===== STEP 3: pergunta / gravação ===== -->
+  <!-- STEP 3: gravação -->
   <div class="step" id="step-question">
     <div class="topbar">
       <div class="progress-track"><div class="progress-fill" id="progress3" style="width: 0%"></div></div>
@@ -623,15 +571,16 @@
       <img class="character-img" src="https://raw.githubusercontent.com/pri-speakjourney/images/main/spencer-cartoon-1.png" alt="Spencer">
       <div class="bubble">
         <div class="bubble-top">
-          <button class="play-btn" data-text="Tell me about yourself, where you're from, what you do, and what you think about the future of Brazil." data-lang="en-US" aria-label="Ouvir a pergunta">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M4 9v6h4l5 5V4L8 9H4z"/>
-              <path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-              <path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-            </svg>
+          <button class="play-btn" data-text="Tell me about yourself, where you're from, what you do, and what you think about the future of Brazil." data-lang="en-US" aria-label="Ouvir">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
           </button>
           <p class="bubble-text">Tell me about yourself — where you're from, what you do, and what you think about the future of Brazil.</p>
         </div>
+        <div class="bubble-translation" data-pt="Me fale sobre você — de onde você é, o que você faz, e o que você pensa sobre o futuro do Brasil."></div>
+        <button class="translate-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
+          Traduzir
+        </button>
         <span class="bubble-tail"></span>
       </div>
     </div>
@@ -654,17 +603,12 @@
     </div>
 
     <p class="limit-notice" id="limitNotice">O áudio deve ter até 2 minutos.</p>
-
     <div class="status" id="status"></div>
-
-    <div class="brand-footer">
-      <img src="https://raw.githubusercontent.com/pri-speakjourney/images/main/logo-speakjourney.png" alt="SpeakJourney">
-    </div>
-
+    <div class="brand-footer"><img src="https://raw.githubusercontent.com/pri-speakjourney/images/main/logo-speakjourney.png" alt="SpeakJourney"></div>
     <div class="home-indicator"></div>
   </div>
 
-  <!-- ===== STEP 4: final ===== -->
+  <!-- STEP 4: final -->
   <div class="step" id="step-final">
     <div class="topbar">
       <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
@@ -676,25 +620,23 @@
       <img class="character-img" src="https://raw.githubusercontent.com/pri-speakjourney/images/main/spencer-cartoon-5.png" alt="Spencer">
       <div class="bubble">
         <div class="bubble-top">
-          <button class="play-btn" data-text="Nice work! We'll send your results by email soon." data-lang="en-US" aria-label="Ouvir a pergunta">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M4 9v6h4l5 5V4L8 9H4z"/>
-              <path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-              <path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-            </svg>
+          <button class="play-btn" data-text="Nice work! We'll send your results by email soon." data-lang="en-US" aria-label="Ouvir">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
           </button>
           <p class="bubble-text">Nice work! We'll send your results by email soon.</p>
         </div>
+        <div class="bubble-translation" data-pt="Ótimo trabalho! Enviaremos seus resultados por e-mail em breve."></div>
+        <button class="translate-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
+          Traduzir
+        </button>
         <span class="bubble-tail"></span>
       </div>
     </div>
 
     <div class="final-email-card">
       <div class="final-email-icon" aria-hidden="true">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="5" width="18" height="14" rx="2"/>
-          <path d="m3 7 9 6 9-6"/>
-        </svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
       </div>
       <p class="final-email-title">Seu resultado está a caminho</p>
       <p class="final-email-text">
@@ -705,11 +647,7 @@
     </div>
 
     <div class="spacer"></div>
-
-    <div class="brand-footer">
-      <img src="https://raw.githubusercontent.com/pri-speakjourney/images/main/logo-speakjourney.png" alt="SpeakJourney">
-    </div>
-
+    <div class="brand-footer"><img src="https://raw.githubusercontent.com/pri-speakjourney/images/main/logo-speakjourney.png" alt="SpeakJourney"></div>
     <div class="home-indicator"></div>
   </div>
 
@@ -737,32 +675,44 @@ function isValidEmail(email) {
 
 document.getElementById('nomeBtn').addEventListener('click', () => {
   const name = document.getElementById('inputName').value.trim();
-  if (!name) {
-    document.getElementById('inputName').focus();
-    return;
-  }
+  if (!name) { document.getElementById('inputName').focus(); return; }
   goToStep('step-nome', 'step-email', 2);
 });
 
 document.getElementById('emailBtn').addEventListener('click', () => {
   const email = document.getElementById('inputEmail').value.trim();
-  if (!isValidEmail(email)) {
-    document.getElementById('inputEmail').focus();
-    return;
-  }
+  if (!isValidEmail(email)) { document.getElementById('inputEmail').focus(); return; }
   goToStep('step-email', 'step-question', 3);
 });
 
-/* ouvir a pergunta (TTS provisório), funciona em qualquer step */
+/* TTS */
 document.querySelectorAll('.play-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
     const utter = new SpeechSynthesisUtterance(btn.dataset.text);
-    utter.lang = btn.dataset.lang || 'pt-BR';
+    utter.lang = btn.dataset.lang || 'en-US';
     btn.classList.add('playing');
     utter.onend = () => btn.classList.remove('playing');
     window.speechSynthesis.speak(utter);
+  });
+});
+
+/* tradução */
+document.querySelectorAll('.translate-btn').forEach(btn => {
+  const svgHTML = btn.querySelector('svg').outerHTML;
+  btn.addEventListener('click', () => {
+    const translation = btn.previousElementSibling;
+    const isVisible = translation.classList.contains('visible');
+    if (isVisible) {
+      translation.classList.remove('visible');
+      translation.textContent = '';
+      btn.innerHTML = svgHTML + ' Traduzir';
+    } else {
+      translation.textContent = translation.dataset.pt;
+      translation.classList.add('visible');
+      btn.innerHTML = svgHTML + ' Ver em inglês';
+    }
   });
 });
 
@@ -773,11 +723,7 @@ const MAX_SECONDS = 120;
 const MIC_ICON = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><line x1="12" y1="19" x2="12" y2="22"/></svg>';
 const STOP_ICON = '<svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="3"/></svg>';
 
-let mediaRecorder;
-let chunks = [];
-let isRecording = false;
-let secondsLeft = MAX_SECONDS;
-let timerInterval = null;
+let mediaRecorder, chunks = [], isRecording = false, secondsLeft = MAX_SECONDS, timerInterval = null;
 
 const micBtn = document.getElementById('micBtn');
 const status = document.getElementById('status');
@@ -786,9 +732,7 @@ const recordingTimeEl = document.getElementById('recordingTime');
 const limitNotice = document.getElementById('limitNotice');
 
 function formatTime(total) {
-  const m = Math.floor(total / 60);
-  const s = total % 60;
-  return m + ':' + String(s).padStart(2, '0');
+  return Math.floor(total / 60) + ':' + String(total % 60).padStart(2, '0');
 }
 
 function startTimer() {
@@ -797,42 +741,31 @@ function startTimer() {
   timerInterval = setInterval(() => {
     secondsLeft--;
     recordingTimeEl.textContent = formatTime(secondsLeft);
-    if (secondsLeft <= 0) {
-      stopRecording();
-    }
+    if (secondsLeft <= 0) stopRecording();
   }, 1000);
 }
 
-function stopTimer() {
-  clearInterval(timerInterval);
-}
+function stopTimer() { clearInterval(timerInterval); }
 
 async function startRecording() {
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     chunks = [];
     mediaRecorder = new MediaRecorder(stream);
-
     mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
-
     mediaRecorder.onstop = async () => {
-      stream.getTracks().forEach(track => track.stop());
-
+      stream.getTracks().forEach(t => t.stop());
       const blob = new Blob(chunks, { type: mediaRecorder.mimeType || 'audio/webm' });
       status.textContent = 'Enviando...';
-
       try {
         const formData = new FormData();
         formData.append('nome', document.getElementById('inputName').value.trim());
         formData.append('email', document.getElementById('inputEmail').value.trim());
         formData.append('audio', blob, 'resposta.webm');
-
         const response = await fetch(DATA_WEBHOOK_URL, { method: 'POST', body: formData });
         if (response.ok) {
-          const finalEmailAddress = document.getElementById('finalEmailAddress');
-          if (finalEmailAddress) {
-            finalEmailAddress.textContent = document.getElementById('inputEmail').value.trim();
-          }
+          const addr = document.getElementById('finalEmailAddress');
+          if (addr) addr.textContent = document.getElementById('inputEmail').value.trim();
           goToStep('step-question', 'step-final', null);
         } else {
           status.textContent = 'Erro ao enviar. Status: ' + response.status;
@@ -841,7 +774,6 @@ async function startRecording() {
         status.textContent = 'Erro de rede: ' + err.message;
       }
     };
-
     mediaRecorder.start();
     isRecording = true;
     micBtn.classList.add('recording');
@@ -865,13 +797,7 @@ function stopRecording() {
   stopTimer();
 }
 
-micBtn.addEventListener('click', () => {
-  if (!isRecording) {
-    startRecording();
-  } else {
-    stopRecording();
-  }
-});
+micBtn.addEventListener('click', () => { isRecording ? stopRecording() : startRecording(); });
 </script>
 
 </body>
