@@ -450,7 +450,7 @@
       <img class="character-img" src="https://raw.githubusercontent.com/pri-speakjourney/images/main/spencer-cartoon-4.png" alt="Spencer">
       <div class="bubble">
         <div class="bubble-top">
-          <button class="play-btn" data-text="Hey there! Ready to get started?" data-lang="en-US" aria-label="Ouvir">
+          <button class="play-btn" data-text="Hey there! Ready to get started?" data-audio="https://raw.githubusercontent.com/pri-speakjourney/images/main/audio/spencer-intro.mp3" data-lang="en-US" aria-label="Ouvir">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
           </button>
           <p class="bubble-text">Hey there! Ready to get started?</p>
@@ -496,7 +496,7 @@
       <img class="character-img" src="https://raw.githubusercontent.com/pri-speakjourney/images/main/spencer-cartoon-2.png" alt="Spencer">
       <div class="bubble">
         <div class="bubble-top">
-          <button class="play-btn" data-text="Before we start, what's your full name?" data-lang="en-US" aria-label="Ouvir">
+          <button class="play-btn" data-text="Before we start, what's your full name?" data-audio="https://raw.githubusercontent.com/pri-speakjourney/images/main/audio/spencer-name.mp3" data-lang="en-US" aria-label="Ouvir">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
           </button>
           <p class="bubble-text">Before we start, what's your full name?</p>
@@ -534,7 +534,7 @@
       <img class="character-img" src="https://raw.githubusercontent.com/pri-speakjourney/images/main/spencer-cartoon-3.png" alt="Spencer">
       <div class="bubble">
         <div class="bubble-top">
-          <button class="play-btn" data-text="What's your best email, so we can send you the results?" data-lang="en-US" aria-label="Ouvir">
+          <button class="play-btn" data-text="What's your best email, so we can send you the results?" data-audio="https://raw.githubusercontent.com/pri-speakjourney/images/main/audio/spencer-email.mp3" data-lang="en-US" aria-label="Ouvir">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
           </button>
           <p class="bubble-text">What's your best email, so we can send you the results?</p>
@@ -572,7 +572,7 @@
       <img class="character-img" src="https://raw.githubusercontent.com/pri-speakjourney/images/main/spencer-cartoon-1.png" alt="Spencer">
       <div class="bubble">
         <div class="bubble-top">
-          <button class="play-btn" data-text="Tell me about yourself, where you're from, what you do, and what you think about the future of Brazil." data-lang="en-US" aria-label="Ouvir">
+          <button class="play-btn" data-text="Tell me about yourself, where you're from, what you do, and what you think about the future of Brazil." data-audio="https://raw.githubusercontent.com/pri-speakjourney/images/main/audio/spencer-question.mp3" data-lang="en-US" aria-label="Ouvir">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
           </button>
           <p class="bubble-text">Tell me about yourself — where you're from, what you do, and what you think about the future of Brazil.</p>
@@ -621,7 +621,7 @@
       <img class="character-img" src="https://raw.githubusercontent.com/pri-speakjourney/images/main/spencer-cartoon-5.png" alt="Spencer">
       <div class="bubble">
         <div class="bubble-top">
-          <button class="play-btn" data-text="Nice work! We'll send your results by email soon." data-lang="en-US" aria-label="Ouvir">
+          <button class="play-btn" data-text="Nice work! We'll send your results by email soon." data-audio="https://raw.githubusercontent.com/pri-speakjourney/images/main/audio/spencer-final.mp3" data-lang="en-US" aria-label="Ouvir">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
           </button>
           <p class="bubble-text">Nice work! We'll send your results by email soon.</p>
@@ -686,18 +686,66 @@ document.getElementById('emailBtn').addEventListener('click', () => {
   goToStep('step-email', 'step-question', 3);
 });
 
-/* TTS */
+/* Áudio do Spencer em MP3 */
+let currentAudio = null;
+
 document.querySelectorAll('.play-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    if (!('speechSynthesis' in window)) return;
-    window.speechSynthesis.cancel();
-    const utter = new SpeechSynthesisUtterance(btn.dataset.text);
-    utter.lang = btn.dataset.lang || 'en-US';
+    const audioUrl = btn.dataset.audio;
+
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+
+      document.querySelectorAll('.play-btn.playing').forEach(activeBtn => {
+        activeBtn.classList.remove('playing');
+      });
+    }
+
+    if (!audioUrl) {
+      // Fallback antigo: usa voz do navegador só se não houver MP3.
+      if (!('speechSynthesis' in window)) return;
+
+      window.speechSynthesis.cancel();
+
+      const utter = new SpeechSynthesisUtterance(btn.dataset.text);
+      utter.lang = btn.dataset.lang || 'en-US';
+
+      btn.classList.add('playing');
+
+      utter.onend = () => {
+        btn.classList.remove('playing');
+      };
+
+      window.speechSynthesis.speak(utter);
+      return;
+    }
+
+    currentAudio = new Audio(audioUrl);
     btn.classList.add('playing');
-    utter.onend = () => btn.classList.remove('playing');
-    window.speechSynthesis.speak(utter);
+
+    currentAudio.onended = () => {
+      btn.classList.remove('playing');
+      currentAudio = null;
+    };
+
+    currentAudio.onerror = () => {
+      btn.classList.remove('playing');
+      currentAudio = null;
+    };
+
+    currentAudio.play();
   });
 });
+
+/* ID único da avaliação */
+function createAssessmentId() {
+  if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+    return 'sjp_' + window.crypto.randomUUID();
+  }
+
+  return 'sjp_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+}
 
 /* tradução */
 document.querySelectorAll('.translate-btn').forEach(btn => {
@@ -760,6 +808,9 @@ async function startRecording() {
       status.textContent = 'Enviando...';
       try {
         const formData = new FormData();
+        const assessmentId = createAssessmentId();
+
+        formData.append('assessmentId', assessmentId);
         formData.append('nome', document.getElementById('inputName').value.trim());
         formData.append('email', document.getElementById('inputEmail').value.trim());
         formData.append('audio', blob, 'resposta.webm');
